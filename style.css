@@ -1,0 +1,33 @@
+html {
+  font-family: Arial;
+}
+
+h1 {
+
+  width: 100%;
+  margin: 0px;
+  font-family: Arial;
+  font-size: 30px;
+}
+h2 {
+  width: 100%;
+  margin-top: 20px;
+  font-family: Arial;
+  font-size: 20px;
+}
+
+h3 {
+  width: 100%;
+  margin-top: 15px;
+  font-family: Arial;
+  font-size: 18px;
+}
+
+#main_canvas {
+  border: 1px solid gray;
+  width: 1000px;
+}
+
+td {
+  padding: 2px;
+}

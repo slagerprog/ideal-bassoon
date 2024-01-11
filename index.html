@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Photo Filters</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html>
+  <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+  <title>Photo Filters</title>
+  
+  <h1>Photo Filters</h1>
+  
+  <h2>Image</h2>
+  
+  <canvas id="main_canvas"></canvas>
+  <br>
+  
+  <input type="file" id="file_chooser" onChange="fileUpload()">
+  <br>
+  
+  <h2>Filters</h2>
+  
+  <h3>Filters with No Inputs</h3>
+  <input type="button" value="Grayscale" id="buttonFilter1" onClick="filter1()">
+  <input type="button" value="Red Filter" id="buttonFilter2" onClick="filter2()">
+  
+  <h3>Noise Filter</h3> 
+  <input type="button" value="Noise Filter" id="buttonFilter3"onClick="filter3()">
+  <br><br>
+  
+  <table margin=10>
+    <tr>
+      <td> Noise Level: </td> 
+      <td><input type="text" id="valNoiseLevel" value="50"></td>
+    </tr>
+  </table>
+  
+  
+  <h3>Circles and Lines</h3>
+  <input type="button" value="Lines" id="buttonFilter4" onClick="filter4()">
+  <input type="button" value="Circles" id="buttonFilter5" onClick="filter5()">
+  <input type="button" value="Circles with Lines" id="buttonFilter6" onClick="filter6()">
+  <br><br>
+  
+  <table margin=10>
+    <tr>
+      <td> Number of Iterations: </td> 
+      <td><input type="text" id="noOfIters" value="1000"></td>
+    </tr>
+    <tr>
+      <td> Size: </td> 
+      <td><input type="text" id="radInput" value="5"></td>
+    </tr>
+    <tr>
+      <td> Line Width: </td> 
+      <td><input type="text" id="lineWidthInput" value="5"></td>
+    </tr>
+    </table>
+  
+  <h3>Heart Filter</h3> 
+  <input type="button" value="Heart Filter" id="buttonFilter7"onClick="filter7()">
+  <br><br>
+  
+  <table margin=10>
+    <tr>
+      <td> Heart Size: </td> 
+      <td><input type="text" id="valHeartSize" value="50"></td>
+    </tr>
+    <tr>
+      <td> Iterations: </td> 
+      <td><input type="text" id="valHeartIterations" value="1000"></td>
+    </tr>
+  </table>
+  <br><br>
+  <input type="button" value="Reset" id="buttonReset" onClick="resetImage()">
+  
+  
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
