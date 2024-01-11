@@ -11,6 +11,7 @@ var filter6Image = null;
 var filter7Image = null;
 var filter8Image = null;
 var filter9Image = null;
+var filter9ImageBlank;
 
 // creates a global variable for the canvas and a context for the canvas
 var canvas1 = document.getElementById("main_canvas");
@@ -31,7 +32,6 @@ function fileUpload() {
   filter7Image = new SimpleImage(uploadedImage);
   filter8Image = new SimpleImage(uploadedImage);
   filter9Image = new SimpleImage(uploadedImage);
-
   originalImage.drawTo(canvas1);
 }
 
@@ -87,6 +87,183 @@ function filter7() {
   doHearts();
 }
 
+// draw heart filter
+function filter8() {
+  imageTest(originalImage);
+  imageTest(filter8Image);
+  doRainbow();
+  filter8Image.drawTo(canvas1);
+}
+
+// blur filter
+function filter9() {
+  imageTest(originalImage);
+  imageTest(filter9Image);
+  doBlur()
+  filter9ImageBlank.drawTo(canvas1);
+}
+
+function doBlur() {
+  clearCanvas();
+  filter9ImageBlank=new SimpleImage(filter9Image.getWidth(),filter9Image.getHeight());
+  var iHeight=filter9Image.getHeight();
+  var iWidth=filter9Image.getWidth();
+  var blurChance=getBlurChance()/100;
+  //var blurDistance=10;
+  var blurDistance=parseInt(getBlurDistance());
+  var x=null;
+  var y=null;
+  var newX=null;
+  var newY=null;
+  var pixel1=null;
+  var pixelAltered=null;
+  var upOrDown=null;
+  var leftOrRight=null;
+  for (var pixel of filter9Image.values()) {
+    var blurBoolean=Math.random();
+    pixel1=filter9ImageBlank.getPixel(pixel.getX(), pixel.getY());
+      if (blurBoolean<1-blurChance) {
+        newX=pixel.getX();
+        newY=pixel.getY();
+        pixel1.setAllFrom(pixel);
+      } 
+      else {
+        upOrDown=Math.random();
+        leftOrRight=Math.random();
+        x=pixel.getX();
+        y=pixel.getY();
+   
+        if(upOrDown<.5) {
+          newX=Math.round(x+Math.random()*blurDistance);
+        } else {
+          newX=Math.round(x-Math.random()*blurDistance);
+        }
+        
+        if(leftOrRight<0.5) {
+          newY=Math.round(y+Math.random()*blurDistance);
+        } else {
+          newY=Math.round(y-Math.random()*blurDistance);
+        }
+        if(newX>(iWidth-1)) {
+          newX=iWidth-1;
+        }
+        if(newX<0) {
+          newX=0;
+        }
+        if(newY>(iHeight-1)) {
+          newY=iHeight-1;
+        }
+        if(newY<0) {
+          newY=0;
+        }
+      //console.log(newX);
+      
+      pixelAltered=filter9Image.getPixel(newX,newY);
+      pixel1.setAllFrom(pixelAltered);
+      }
+  }
+
+//  filter9ImageBlank.drawTo(canvas1);
+}
+
+function doRainbow() {
+  var iHeight=filter8Image.getHeight();
+  for (var pixel of filter8Image.values()) {
+    var origRed = pixel.getRed();
+    var origGreen = pixel.getGreen();
+    var origBlue = pixel.getBlue();
+    var avgColor = (origRed + origGreen + origBlue) / 3;
+    var pixelY=pixel.getY();
+    
+    //red stripe of rainbow -- first seventh of image
+    if(pixelY<iHeight/7){
+      if(avgColor<128) {
+        pixel.setRed(2*avgColor);
+        pixel.setGreen(0);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(255);
+        pixel.setGreen(2*avgColor-255);
+        pixel.setBlue(2*avgColor-255);
+      }
+    }
+    //orange stripe of rainbox -- second seventh of image
+    if(pixelY>=iHeight/7 && pixelY<(iHeight/7)*2) {
+      if(avgColor<128) {
+        pixel.setRed(2*avgColor);
+        pixel.setGreen(.8*avgColor);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(255);
+        pixel.setGreen(1.2*avgColor- 51);
+        pixel.setBlue(2*avgColor-255);
+      }
+    }
+    //yellow stripe of rainbox -- third seventh of image
+    if(pixelY>=(iHeight/7)*2 && pixelY<(iHeight/7)*3) {
+      if(avgColor<128) {
+        pixel.setRed(2*avgColor);
+        pixel.setGreen(2*avgColor);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avgColor-255);
+      }
+    }
+    //green stripe of rainbox -- fourth seventh of image
+    if(pixelY>=(iHeight/7)*3 && pixelY<(iHeight/7)*4) {
+      if(avgColor<128) {
+        pixel.setRed(0);
+        pixel.setGreen(2*avgColor);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(2*avgColor-255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avgColor-255);
+      }
+    }
+    //blue stripe of rainbox -- fourth seventh of image
+    if(pixelY>=(iHeight/7)*4 && pixelY<(iHeight/7)*5) {
+      if(avgColor<128) {
+        pixel.setRed(0);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avgColor);
+      } else {
+        pixel.setRed(2*avgColor-255);
+        pixel.setGreen(2*avgColor-255);
+        pixel.setBlue(255);
+      }
+    }
+     //Indigo stripe of rainbox -- fifth seventh of image
+    if(pixelY>=(iHeight/7)*5 && pixelY<(iHeight/7)*6) {
+      if(avgColor<128) {
+        pixel.setRed(.8*avgColor);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avgColor);
+      } else {
+        pixel.setRed(1.2*avgColor-51);
+        pixel.setGreen(2*avgColor-255);
+        pixel.setBlue(255);
+      }
+    }
+   //Violet stripe of rainbox -- fifth seventh of image
+    if(pixelY>=(iHeight/7)*6) {
+      if(avgColor<128) {
+        pixel.setRed(1.6*avgColor);
+        pixel.setGreen(0);
+        pixel.setBlue(1.6*avgColor);
+      } else {
+        pixel.setRed(.4*avgColor+153);
+        pixel.setGreen(2*avgColor-255);
+        pixel.setBlue(.4*avgColor+153);
+      }
+    }  
+    
+  }
+  
+}
+
 //Reset the Image
 function resetImage() {
   imageTest(originalImage);
@@ -95,6 +272,11 @@ function resetImage() {
   filter2Image = new SimpleImage(uploadedImage);
   filter3Image = new SimpleImage(uploadedImage);
   filter4Image = new SimpleImage(uploadedImage);
+  filter5Image = new SimpleImage(uploadedImage);
+  filter6Image = new SimpleImage(uploadedImage);
+  filter7Image = new SimpleImage(uploadedImage);
+  filter8Image = new SimpleImage(uploadedImage);
+  filter9Image = new SimpleImage(uploadedImage);
   originalImage.drawTo(canvas1);
 }
 
@@ -246,57 +428,6 @@ function doCircles() {
   }
 }
 
-//clears the canvas
-function clearCanvas() {
-  var ctx = canvas1.getContext("2d");
-  ctx.clearRect(0, 0, canvas1.width, canvas1.height);
-}
-
-//returns user input values for iterations
-function getIterations() {
-  var iterations = document.getElementById("noOfIters").value;
-  return parseInt(iterations);
-}
-
-//returns user input values for line width
-function getLineWidth() {
-  var lineWidth = document.getElementById("lineWidthInput").value;
-  return parseInt(lineWidth);
-}
-
-//returns a random number canvas width
-function getRandomX() {
-  return Math.trunc(Math.random() * canvas1.width);
-}
-
-//returns a random number canvas height
-function getRandomY() {
-  return Math.trunc(Math.random() * canvas1.height);
-}
-
-//retrives user input values for size (radius)
-function getRadius() {
-  var radius = document.getElementById("radInput").value;
-  return parseInt(radius);
-}
-
-//retrives user input values for noise level
-function getNoiseLevel() {
-  var noiseLevel = document.getElementById("valNoiseLevel").value;
-  return parseInt(noiseLevel);
-}
-
-//retrives user input values for heart size
-function getHeartSize() {
-  var heartSize = document.getElementById("valHeartSize").value;
-  return parseInt(heartSize);
-}
-
-//retrives user input values for heart iterations
-function getHeartIterations() {
-  var heartIts = document.getElementById("valHeartIterations").value;
-  return parseInt(heartIts);
-}
 
 //function for creating noise filter
 function doNoise() {
@@ -407,4 +538,67 @@ function doHearts() {
     ctx.fillStyle = pickerValue;
     ctx.fill();
   }
+}
+
+//clears the canvas
+function clearCanvas() {
+  var ctx = canvas1.getContext("2d");
+  ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+}
+
+//returns user input values for iterations
+function getIterations() {
+  var iterations = document.getElementById("noOfIters").value;
+  return parseInt(iterations);
+}
+
+//returns user input values for line width
+function getLineWidth() {
+  var lineWidth = document.getElementById("lineWidthInput").value;
+  return parseInt(lineWidth);
+}
+
+//returns a random number canvas width
+function getRandomX() {
+  return Math.trunc(Math.random() * canvas1.width);
+}
+
+//returns a random number canvas height
+function getRandomY() {
+  return Math.trunc(Math.random() * canvas1.height);
+}
+
+//retrives user input values for size (radius)
+function getRadius() {
+  var radius = document.getElementById("radInput").value;
+  return parseInt(radius);
+}
+
+//retrives user input values for heart size
+function getHeartSize() {
+  var heartSize = document.getElementById("valHeartSize").value;
+  return parseInt(heartSize);
+}
+
+//retrives user input values for heart iterations
+function getHeartIterations() {
+  var heartIts = document.getElementById("valHeartIterations").value;
+  return parseInt(heartIts);
+}
+
+//retrives user input values for blur chance
+function getBlurChance() {
+  var blurChance = document.getElementById("blurChance").value;
+  return parseInt(blurChance);
+}
+
+//retrives user input values for blur chance
+function getBlurDistance() {
+  var blurDistance = document.getElementById("blurDistance").value;
+  return parseInt(blurDistance);
+}
+
+function getNoiseLevel() {
+  var noiseLevel = document.getElementById("noiseLevel").value;
+  return parseInt(noiseLevel);
 }

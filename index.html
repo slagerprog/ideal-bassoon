@@ -27,15 +27,28 @@
   <h3>Filters with No Inputs</h3>
   <input type="button" value="Grayscale" id="buttonFilter1" onClick="filter1()">
   <input type="button" value="Red Filter" id="buttonFilter2" onClick="filter2()">
-  
+  <input type="button" value="Rainbow Filter" id="buttonFilter8" onClick="filter8()">
   <h3>Noise Filter</h3> 
   <input type="button" value="Noise Filter" id="buttonFilter3"onClick="filter3()">
   <br><br>
-  
   <table margin=10>
     <tr>
-      <td> Noise Level: </td> 
-      <td><input type="text" id="valNoiseLevel" value="50"></td>
+      <td> Noise Level (1-50): </td> 
+      <td><input type="text" id="noiseLevel" value="10"></td>
+    </tr>
+  </table>
+  <br><br>
+  <h3>Blur Filter</h3> 
+  <input type="button" value="Blur Filter" id="buttonFilter9"onClick="filter9()">
+  <br><br>  
+  <table margin=10>
+    <tr>
+      <td> Blur Chance (1-100): </td> 
+      <td><input type="text" id="blurChance" value="50"></td>
+    </tr>
+    <tr>
+      <td> Blur Distance: </td> 
+      <td><input type="text" id="blurDistance" value="10"></td>
     </tr>
   </table>
   
