@@ -1,33 +1,73 @@
 html {
   font-family: Arial;
+  background-color: white
+
 }
 
 h1 {
 
-  width: 100%;
+  width: 720px;
   margin: 0px;
   font-family: Arial;
   font-size: 30px;
+  color: #1b4965;
+  top-margin: 0px;
+  padding: 10px;
+  background-color: #cae9ff;
+  border: 3px;
+  border-style: solid;
+  border-color: #1b4965 ;
 }
 h2 {
   width: 100%;
-  margin-top: 20px;
   font-family: Arial;
-  font-size: 20px;
+  font-size: 25px;
+  padding: 10px;
+  margin: 0px;
 }
 
 h3 {
   width: 100%;
-  margin-top: 15px;
   font-family: Arial;
   font-size: 18px;
 }
 
 #main_canvas {
   border: 1px solid gray;
-  width: 300px;
+  width: 700px;
+  background-color: white;
 }
 
 td {
   padding: 2px;
+}
+
+#roundedDiv {
+  border: 1px;
+  border-style: solid;
+  border-color: #1b4965;
+  padding: 10px;
+  border-radius: 20px;
+  width: 710px;
+  background-color: #cae9ff;
+  
+}
+
+#boldblob {
+  border: 3px;
+  border-style: solid;
+  border-color: #1b4965;
+  padding: 10px;
+  border-radius: 20px;
+  width: 710px;
+  background-color: #bee9e8;
+  color: #1b4965;
+}
+
+
+#divTitle {
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1b4965;
 }

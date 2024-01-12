@@ -13,22 +13,28 @@
   <title>Photo Filters</title>
   
   <h1>Photo Filters</h1>
-  
+  <br>
+  <div id="boldblob">
   <h2>Image</h2>
   
   <canvas id="main_canvas"></canvas>
   <br>
   
-  <input type="file" id="file_chooser" onChange="fileUpload()">
+  <input type="file" id="file_chooser" onChange="fileUpload()" accept="image/*">
+    </div>
   <br>
-  
-  <h2>Filters</h2>
-  
-  <h3>Filters with No Inputs</h3>
+<br> 
+  <div id="roundedDiv">
+    <div id="divTitle">Filters with No Inputs</div>
+  <br>  
   <input type="button" value="Grayscale" id="buttonFilter1" onClick="filter1()">
   <input type="button" value="Red Filter" id="buttonFilter2" onClick="filter2()">
   <input type="button" value="Rainbow Filter" id="buttonFilter8" onClick="filter8()">
-  <h3>Noise Filter</h3> 
+  </div>
+  <br>
+  <div id="roundedDiv">
+  <div id="divTitle">Noise Filter</div> 
+    <br>
   <input type="button" value="Noise Filter" id="buttonFilter3"onClick="filter3()">
   <br><br>
   <table margin=10>
@@ -37,8 +43,11 @@
       <td><input type="text" id="noiseLevel" value="10"></td>
     </tr>
   </table>
-  <br><br>
-  <h3>Blur Filter</h3> 
+  </div>
+  <br>
+  <div id="roundedDiv">
+  <div id="divTitle">Blur Filter</div> 
+    <br>
   <input type="button" value="Blur Filter" id="buttonFilter9"onClick="filter9()">
   <br><br>  
   <table margin=10>
@@ -51,14 +60,17 @@
       <td><input type="text" id="blurDistance" value="10"></td>
     </tr>
   </table>
+  </div>
+  <br>
   
-  
-  <h3>Circles and Lines</h3>
+  <div id="roundedDiv">
+  <div id="divTitle">Circles and Lines</div>
+    <br>
   <input type="button" value="Lines" id="buttonFilter4" onClick="filter4()">
   <input type="button" value="Circles" id="buttonFilter5" onClick="filter5()">
   <input type="button" value="Circles with Lines" id="buttonFilter6" onClick="filter6()">
-  <br><br>
   
+  <br>  <br>
   <table margin=10>
     <tr>
       <td> Number of Iterations: </td> 
@@ -73,8 +85,12 @@
       <td><input type="text" id="lineWidthInput" value="5"></td>
     </tr>
     </table>
+  </div>
+  <br>
   
-  <h3>Heart Filter</h3> 
+ <div id="roundedDiv">
+  <div id="divTitle">Heart Filter</div> 
+   <br>
   <input type="button" value="Heart Filter" id="buttonFilter7"onClick="filter7()">
   <br><br>
   
@@ -90,7 +106,7 @@
   </table>
   <br><br>
   <input type="button" value="Reset" id="buttonReset" onClick="resetImage()">
-  
+  </div>
   
 </html>
 <!-- partial -->
